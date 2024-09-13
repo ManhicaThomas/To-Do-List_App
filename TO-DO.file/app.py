@@ -12,7 +12,7 @@ class Task(db.Model):
     task = db.Column(db.String(100), nullable=False)
     completed = db.Column(db.Boolean, default=False)
 
-with app.app_ context():
+with app.app_context():
     db.create_all()
 
 @app.route('/')
