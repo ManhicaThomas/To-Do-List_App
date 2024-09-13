@@ -5,6 +5,11 @@ from flask_sqlalchemy import SQLAlchemy
 
 from app import Task
 
+@app.route('/')
+def index():
+    tasks = Task.query.all()
+    return render_template('index.html', tasks=tasks)
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
