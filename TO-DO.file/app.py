@@ -12,8 +12,7 @@ class Task(db.Model):
     task = db.Column(db.String(100), nullable=False)
     completed = db.Column(db.Boolean, default=False)
 
-@app.before_first_request
-def create_tables():
+with app.app_ context():
     db.create_all()
 
 @app.route('/')
