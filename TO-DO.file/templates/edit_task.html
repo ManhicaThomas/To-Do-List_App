@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"], input[type="number"], input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Task</h1>
+
+    <form action="{{ url_for('edit_task', task_id=task.id) }}" method="post">
+        <label for="task">Task Name:</label>
+        <input type="text" name="task" id="task" value="{{ task.task }}" required>
+
+        <label for="priority">Priority (1-5):</label>
+        <input type="number" name="priority" id="priority" value="{{ task.priority }}" min="1" max="5" required>
+
+        <label for="due_date">Due Date:</label>
+        <input type="date" name="due_date" id="due_date" value="{{ task.due_date }}" required>
+
+        <label for="completed">Completed:</label>
+        <input type="checkbox" name="completed" id="completed" {% if task.completed %}checked{% endif %}>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
+
