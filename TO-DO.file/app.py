@@ -1,3 +1,4 @@
+from flask import Flask, render_template
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -16,8 +17,9 @@ with app.app_context():
     db.create_all()
 
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def index():
+    tasks = Task.query.all()
+    return render_template('index.html', tasks=tasks)
 
 if __name__ == '__main__':
     app.run()
