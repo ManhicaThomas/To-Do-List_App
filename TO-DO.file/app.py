@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-from flask import Flask, render_template
 from flask import Flask
-=======
 #!/usr/bin/env python3
 """model to display the to-do list"""
 from flask import Flask, render_template, request, redirect, url_for
->>>>>>> origin/master
 from flask_sqlalchemy import SQLAlchemy
 
 # Initialize Flask app
@@ -31,14 +27,11 @@ with app.app_context():
 
 # Home route to list all tasks
 @app.route('/')
-<<<<<<< HEAD
-def index():
-    tasks = Task.query.all()
-=======
+def hello_world():
+    return 'Hello, World!'
 def list_tasks():
     """Displays a list of all tasks with their details (priority, due date, completion status)."""
     tasks = Task.query.order_by(Task.due_date.asc()).all()
->>>>>>> origin/master
     return render_template('index.html', tasks=tasks)
 
 # Route to create a new task
@@ -59,7 +52,7 @@ def create_task():
         except Exception as e:
             print(f"Error creating task: {e}")
             return render_template('create_task.html', error="Error creating task")
-    
+
     return render_template('create_task.html')
 
 # Route to edit an existing task
@@ -99,5 +92,5 @@ def delete_task(task_id):
 
 # Run the Flask app
 if __name__ == '__main__':
+    app.run()
     app.run(debug=True)
-
